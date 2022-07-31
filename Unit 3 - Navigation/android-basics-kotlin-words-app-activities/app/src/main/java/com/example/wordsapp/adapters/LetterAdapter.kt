@@ -29,7 +29,7 @@ import com.example.wordsapp.fragments.LetterListFragmentDirections
 
 
 /**
- * Adapter for the [RecyclerView] in [MainActivity].
+ * Adapter for the [RecyclerView] in [com.example.wordsapp.MainActivity].
  */
 class LetterAdapter :
     RecyclerView.Adapter<LetterAdapter.LetterViewHolder>() {
@@ -55,7 +55,7 @@ class LetterAdapter :
         val layout = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
-        
+
         // Setup custom accessibility delegate to set the text read
         layout.accessibilityDelegate = Accessibility
         return LetterViewHolder(layout)
@@ -66,10 +66,13 @@ class LetterAdapter :
      */
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item = list.get(position)
-        holder.button.text = item.toString()
 
+        holder.button.text = item.toString()
         holder.button.setOnClickListener {
-            val action = LetterListFragmentDirections.actionLetterListFragmentToWordListFragment(letter = holder.button.text.toString())
+
+            val action =
+                LetterListFragmentDirections.actionLetterListFragmentToWordListFragment(letter = holder.button.text.toString())
+
             holder.view.findNavController().navigate(action)
         }
     }

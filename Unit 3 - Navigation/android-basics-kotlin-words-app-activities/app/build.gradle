@@ -64,4 +64,12 @@ dependencies {
     /* Navigation Component */
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    /* Tests */
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.4.0'
+    /* Test navigation component */
+    androidTestImplementation 'androidx.navigation:navigation-testing:2.4.2'
+
+    /* Test fragments */
+    debugImplementation 'androidx.fragment:fragment-testing:1.4.1'
 }

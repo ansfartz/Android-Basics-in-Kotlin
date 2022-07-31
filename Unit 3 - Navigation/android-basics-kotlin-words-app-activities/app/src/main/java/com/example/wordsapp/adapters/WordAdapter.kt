@@ -55,7 +55,7 @@ class WordAdapter(private val letterId: String, context: Context) :
     }
 
     class WordViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+        val button: Button = view.findViewById<Button>(R.id.button_item)
     }
 
     override fun getItemCount(): Int = filteredWords.size
