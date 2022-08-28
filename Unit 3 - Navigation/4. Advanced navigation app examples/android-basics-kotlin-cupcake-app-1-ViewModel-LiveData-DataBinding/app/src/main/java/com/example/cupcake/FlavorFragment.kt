@@ -59,9 +59,8 @@ class FlavorFragment : Fragment() {
          *  - The LiveData observers are the binding expressions in layout files with observable data like price. ( example binding expression: android:text="@{@string/subtotal_price(viewModel.price)} )
          *    With Data Binding, when an observable value changes, the UI elements it's bound to are updated automatically.
          *
-         *
          *  For the UI elements to automatically update, you have to associate    binding.lifecycleOwner    with the lifecycle owners in the app.
-         *  By setting the lifecycle owner, the app will be able to observe LiveData objects.
+         *  By setting the lifecycle owner, the app's views will be able to observe LiveData objects and update when the Livedata objects change values.
          */
 
         binding?.apply {

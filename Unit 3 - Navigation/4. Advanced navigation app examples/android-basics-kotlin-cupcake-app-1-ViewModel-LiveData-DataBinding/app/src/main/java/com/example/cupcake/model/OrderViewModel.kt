@@ -1,7 +1,6 @@
 package com.example.cupcake.model
 
 import android.util.Log
-import androidx.arch.core.util.Function
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -15,7 +14,16 @@ private const val PRICE_FOR_SAME_DAY_PICKUP = 3.00
 
 class OrderViewModel : ViewModel() {
 
-    private val _quantity = MutableLiveData<Int>()
+    /**
+     *  This is similar to the concept of 'backing property'. But here we don't need to overwrite the getter ( get() )
+     *  because when doing
+     *
+     *      val b: MutableLiveData = MutableLiveData()
+     *      val a: LiveData = b
+     *
+     *  when b's value is updated, a will be updated too.
+     */
+    private val _quantity: MutableLiveData<Int> = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
     private val _flavor = MutableLiveData<String>()
@@ -37,17 +45,18 @@ class OrderViewModel : ViewModel() {
 
     fun setQuantity(numberCupcakes: Int) {
         _quantity.value = numberCupcakes
-        Log.d("ANDYYY", "setQuantity: _quantity.value = ${_quantity.value}")
-        Log.d("ANDYYY", "setQuantity: quantity.value = ${quantity.value}")
+        Log.d("ANDYYY", "setQuantity: _quantity = ${_quantity.value}, quantity = ${quantity.value}")
         updatePrice()
     }
 
     fun setFlavor(desiredFlavor: String) {
         _flavor.value = desiredFlavor
+        Log.d("ANDYYY", "setFlavor: _quantity = ${_flavor.value}, quantity = ${flavor.value}")
     }
 
     fun setDate(pickupDate: String) {
         _date.value = pickupDate
+        Log.d("ANDYYY", "setDate: _quantity = ${_date.value}, quantity = ${date.value}")
         updatePrice()
     }
 
