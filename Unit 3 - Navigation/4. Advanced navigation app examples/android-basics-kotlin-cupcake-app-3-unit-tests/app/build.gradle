@@ -14,6 +14,8 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -50,6 +52,17 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation 'com.google.android.material:material:1.4.0'
 
+    // Unit tests
+    // Unit tests - JUnit
     testImplementation 'junit:junit:4.12'
+    // Unit tests - needed for InstantTaskExecutorRule
     testImplementation 'androidx.arch.core:core-testing:2.1.0'
+
+    // UI Tests (Instrumentation tests)
+    // UI Tests - Espresso
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.4.0'
+    // UI Tests - Navigation Component testing (make sure it has same verion as androidx.navigation:navigation-fragment-ktx)
+    androidTestImplementation 'androidx.navigation:navigation-testing:2.3.5'
+    // UI Tests - Fragments testing
+    debugImplementation 'androidx.fragment:fragment-testing:1.5.2'
 }
