@@ -36,7 +36,6 @@ class AmphibianListFragment : Fragment() {
     ): View? {
         val binding = FragmentAmphibianListBinding.inflate(inflater)
 
-        // TODO: call the view model method that calls the amphibians api
         viewModel.getAmphibiansList()
 
         binding.lifecycleOwner = this

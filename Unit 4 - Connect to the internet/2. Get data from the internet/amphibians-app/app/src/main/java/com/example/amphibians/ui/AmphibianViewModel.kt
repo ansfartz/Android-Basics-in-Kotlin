@@ -24,10 +24,6 @@ class AmphibianViewModel : ViewModel() {
     private val _amphibian = MutableLiveData<Amphibian>()
     val amphibian: LiveData<Amphibian> = _amphibian
 
-    init {
-        getAmphibiansList()
-    }
-
     fun onAmphibianClicked(amphibian: Amphibian) {
         _amphibian.value = amphibian
     }
@@ -38,10 +34,13 @@ class AmphibianViewModel : ViewModel() {
             _status.value = AmphibianApiStatus.LOADING
 
             try {
+                Log.d("ANDYYY", "AmphibianViewModel # getAmphibiansList: calling retrofitService.getAmphibians()")
                 _amphibians.value = AmphibianApi.retrofitService.getAmphibians()
+
+                Log.d("ANDYYY", "AmphibianViewModel # getAmphibiansList: retrofitService.getAmphibians() DONE ")
                 _status.value = AmphibianApiStatus.DONE
             } catch (e: Exception) {
-                Log.e("ANDYYY", "OverviewViewModel # getMarsPhotos: error = " + e.message)
+                Log.e("ANDYYY", "AmphibianViewModel # getAmphibiansList: error = " + e.message)
                 _status.value = AmphibianApiStatus.ERROR
                 _amphibians.value = listOf()
             }
