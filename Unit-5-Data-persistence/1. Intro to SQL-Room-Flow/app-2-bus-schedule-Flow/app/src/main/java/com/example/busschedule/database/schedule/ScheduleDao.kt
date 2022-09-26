@@ -11,8 +11,14 @@ import kotlinx.coroutines.flow.Flow
  * It is recommended to have multiple Dao classes in your codebase depending on the tables they touch.
  *
  *  TL;DR:
- *      Provides access to read/write operations on the schedule table.
- *      Generally used by ViewModels to format the query results for use in the UI.
+ *      - Provides access to read/write operations on the schedule table, by mapping a method to a SQL query.
+ *      - Generally used by ViewModels to format the query results for use in the UI.
+ *      - Working with the database is a time-consuming I/O operation, so this needs to be done on a background thread.
+ *
+ * Note: When using complex data types, such as java.util.Date, you have to also supply type converters.
+ *       To keep this example basic, no data types that require type converters are used.
+ *       See the documentation
+ *       at https://developer.android.com/training/data-storage/room/referencing-data
  */
 @Dao
 interface ScheduleDao {
@@ -22,7 +28,5 @@ interface ScheduleDao {
 
     @Query("SELECT * FROM schedule WHERE stop_name = :stopName ORDER BY arrival_time ASC")
     fun getByStopName(stopName: String): Flow<List<Schedule>>
-
-
 
 }
