@@ -54,6 +54,21 @@ import com.example.android.marsphotos.overview.PhotoGridAdapter
  *  Basically, for the above example, whenever the attribute 'myImageUrl' is being used, the method
  *  annotated with @BindingAdapter("myImageUrl") will be called
  *
+ *  _______________________________________________________________________________________________
+ *
+ *  Data binding works even if no attribute exists with the given name. You can then create
+ *  attributes for any setter by using data binding. For example, the support class DrawerLayout
+ *  doesn't have any attributes, but plenty of setters. The following layout automatically uses the
+ *  'setScrimColor(int)' and   'setDrawerListener(DrawerListener)'   methods as the setter for the
+ *  'app:scrimColor'     and   'app:drawerListener'                  attributes, respectively:
+ *
+ *      <android.support.v4.widget.DrawerLayout
+ *      android:layout_width="wrap_content"
+ *      android:layout_height="wrap_content"
+ *      app:scrimColor="@{@color/scrim}"
+ *      app:drawerListener="@{fragment.drawerListener}">
+ *
+ *
  */
 @BindingAdapter("imageUrl")
 fun loadURLtoImageView(imgView: ImageView, imgUrl: String?) {
